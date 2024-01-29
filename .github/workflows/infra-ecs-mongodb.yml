@@ -7,7 +7,7 @@ on:
     types: [assigned]
 
 env:
-  working-directory: infra_ecs_monogodb
+  working-directory: infra_ecs_mongodb
   aws-region: us-east-1
 
 permissions:
