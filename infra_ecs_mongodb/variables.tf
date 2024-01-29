@@ -3,16 +3,22 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-variable "mongodb_cluster" {
-  default = "tech-challenge-cluster"
-}
-
 variable "mongodb_service" {
   default = "mongodb-tech-challenge-service"
 }
 
-variable "mongodb-lb" {
-  default = "mongodb-lb"
+variable "mongodb_cluster" {
+  description = "ECS Cluster"
+  type        = string
+  default     = "mongodb-cluster"
+
+}
+
+variable "lb_name" {
+  default = "tech-challenge-lb"
+}
+variable "lb_arn" {
+  default = "arn:aws:elasticloadbalancing:us-east-1:818048014896:loadbalancer/app/tech-challenge-lb/6f427b289f8577e0"
 }
 
 variable "mongodb_sg" {
@@ -28,7 +34,7 @@ variable "ingress_cidr_blocks" {
 variable "nlb_enabled" {
   description = "Enable NLB"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "mongo-ecs-execution-role" {
@@ -151,14 +157,26 @@ variable "aws_instance_profile" {
 variable "vpc_id" {
   description = "VPC ID"
   type        = string
-  default     = "vpc-034083fcf776a20c9"
+  default     = "vpc-028610ead2f7d6752"
 
 }
 
-variable "ecs_cluster" {
-  description = "ECS Cluster"
+variable "containerPort" {
+  description = "Container Port"
+  type        = number
+  default     = 27017
+
+}
+
+variable "target_group_arn" {
+  description = "Target Group ARN"
   type        = string
-  default     = "tech-challenge-cluster"
-  
+  default     = "arn:aws:elasticloadbalancing:us-east-1:818048014896:targetgroup/tech-challenge-lb-tg/9bb3f6d1d112a301"
 }
 
+variable "target_group_name" {
+  description = "Target Group Name"
+  type        = string
+  default     = "tech-challenge-lb-tg"
+
+}

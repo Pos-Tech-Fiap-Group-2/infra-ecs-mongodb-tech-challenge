@@ -2,12 +2,12 @@ name: 'Deploy Infraestrutura do ECS'
 
 on:
   push:
-    branches: [ "feature/criacao-mongodb" ]
+    branches: [ "feature/criacao-mongodb", "main" ]
   pull_request:
     types: [assigned]
 
 env:
-  working-directory: infra_ecs
+  working-directory: infra_ecs_monogodb
   aws-region: us-east-1
 
 permissions:
@@ -58,9 +58,6 @@ jobs:
       working-directory: ${{ env.working-directory }}
 
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply tfPlan -auto-approve -input=false
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve -input=false
       working-directory: ${{ env.working-directory }}
-
-    - name: Cleanup Terraform Plan
-      run: rm -f tfplan

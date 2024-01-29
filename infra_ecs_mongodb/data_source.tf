@@ -7,20 +7,25 @@ data "aws_subnets" "tech-challenge-subnet" {
     name   = "vpc-id"
     values = [data.aws_vpc.tech-challenge-vpc.id]
   }
-  
+
 }
 
 data "aws_subnet" "selected-subnet" {
-#  for_each = toset(data.aws_subnets.tech-challenge-subnet.ids)
- id = tolist(data.aws_subnets.tech-challenge-subnet.ids)[0]
+  id = tolist(data.aws_subnets.tech-challenge-subnet.ids)[0]
 }
 
 output "subnet_cidr_blocks" {
   value = data.aws_subnet.selected-subnet.cidr_block
 }
 
-data "aws_ecs_cluster" "ecs-mongo" {
-  cluster_name = var.ecs_cluster
+data "aws_lb" "mongodb_lb" {
+  arn  = var.lb_arn
+  name = var.lb_name
+}
+
+data "aws_lb_target_group" "mongodb_tg" {
+  arn  = var.target_group_arn
+  name = var.target_group_name
 }
 
 data "template_cloudinit_config" "mongodb_user_data" {

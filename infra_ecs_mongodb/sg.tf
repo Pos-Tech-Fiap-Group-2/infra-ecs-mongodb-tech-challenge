@@ -1,13 +1,13 @@
 resource "aws_security_group" "mongodb_sg" {
   name        = var.mongodb_sg
-  description = "Security group to allow access to Mongo"
+  description = "Security group to Mongo"
   vpc_id      = data.aws_vpc.tech-challenge-vpc.id
 
   dynamic "ingress" {
     for_each = var.nlb_enabled ? [1] : []
     content {
-      from_port   = 27017
-      to_port     = 27017
+      from_port   = var.containerPort
+      to_port     = var.containerPort
       protocol    = "tcp"
       cidr_blocks = var.ingress_cidr_blocks
     }
