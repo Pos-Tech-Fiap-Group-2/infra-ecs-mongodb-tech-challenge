@@ -18,7 +18,7 @@ variable "lb_name" {
   default = "tech-challenge-lb"
 }
 variable "lb_arn" {
-  default = "arn:aws:elasticloadbalancing:us-east-1:818048014896:loadbalancer/app/tech-challenge-lb/6f427b289f8577e0"
+  default = "arn:aws:elasticloadbalancing:us-east-1:654654392738:loadbalancer/app/tech-challenge-lb/8a02b301ed6f1d81"
 }
 
 variable "mongodb_sg" {
@@ -143,7 +143,7 @@ variable "primary_enabled" {
 variable "aws_iam_role" {
   description = "AWS IAM Role"
   type        = string
-  default     = "arn:aws:iam::818048014896:role/LabRole"
+  default     = "arn:aws:iam::654654392738:role/LabRole"
 
 }
 
@@ -157,7 +157,7 @@ variable "aws_instance_profile" {
 variable "vpc_id" {
   description = "VPC ID"
   type        = string
-  default     = "vpc-028610ead2f7d6752"
+  default     = "vpc-0a47e4de920d31a8d"
 
 }
 
@@ -171,7 +171,7 @@ variable "containerPort" {
 variable "target_group_arn" {
   description = "Target Group ARN"
   type        = string
-  default     = "arn:aws:elasticloadbalancing:us-east-1:818048014896:targetgroup/tech-challenge-lb-tg/9bb3f6d1d112a301"
+  default     = "arn:aws:elasticloadbalancing:us-east-1:654654392738:targetgroup/tech-challenge-lb-tg/0202c3b632c26b2d"
 }
 
 variable "target_group_name" {
